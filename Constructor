@@ -1,0 +1,33 @@
+/*Write a program to create a class with name BankApp,
+with Function Account_Details(), this function will update user
+profile like , Account holder name  and Account Number
+1. Display a message on Screen "Welcome to Bank", without calling any fucntion.
+2. Pass Account Holder name and Account Number to Account_Details() using constrctor.
+Default values :- Name is "User01" Account Number "001"*/
+#include<iostream>
+using namespace std;
+class BankApp
+{
+    public : BankApp()
+    {
+        cout<<"Welcome to Bank";
+    }
+    public : BankApp(string Name , int Account_No)
+    {
+        cout<<"\n Account Holder name is" <<Name;
+        cout<<"\n Account Number is "<<Account_No;
+    }
+    private : string UName, int Acc;
+    string choices;
+    public : void Account_Details()
+    {
+        cout<<"Do You Want to Update your priofile "
+    }
+
+};
+int main()
+{
+    BankApp obj;
+    return 0;
+
+}
