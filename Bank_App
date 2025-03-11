@@ -1,0 +1,97 @@
+/* write a program to
+a. create a class with name BankApp
+b. create a parametrized constructor of this class, that initialize class attributes like 
+Product ID,Product Name, Product Price.
+c. implement display function to display all records.
+d. update function to change product Price.
+(update function will not modify original price of the product)
+additionally
+e. create array of object to store product information of 5 differebt products.
+f. accept product id from user and change price of that product only.
+g. display product not exist, if user enter incorrect product id. */
+
+#include<iostream>
+using namespace std;
+
+class BankApp {
+    private:
+        int ProductID;
+        string ProductName;
+        double ProductPrice;
+        double UpdatedPrice;
+    
+    public:
+        // Parameterized Constructor
+        BankApp(int id, string name, double price) {
+            ProductID = id;
+            ProductName = name;
+            ProductPrice = price;
+            UpdatedPrice = price;
+        }
+    
+        // Display function
+        void display() {
+            cout << "Product ID: " << ProductID << endl;
+            cout << "Product Name: " << ProductName << endl;
+            cout << "Original Price: " << ProductPrice << endl;
+            cout << "Updated Price: " << UpdatedPrice << endl;
+            cout << "--------------------------" << endl;
+        }
+    
+        // Update function to change product price
+        void updatePrice(double newPrice) {
+            UpdatedPrice = newPrice;
+        }
+    
+        // Getter for ProductID
+        int getProductID() {
+            return ProductID;
+        }
+    };
+    
+    int main() {
+        // Creating an array of objects
+        BankApp products[5] = {
+            BankApp(101, "Savings Account", 500.00),
+            BankApp(102, "Fixed Deposit", 1000.00),
+            BankApp(103, "Recurring Deposit", 750.00),
+            BankApp(104, "Credit Card", 1500.00),
+            BankApp(105, "Loan Account", 2000.00)
+        };
+    
+        // Display all records initially
+        cout << "Initial Product Details:" << endl;
+        for (int i = 0; i < 5; i++) {
+            products[i].display();
+        }
+    
+        // Accept product ID from user and update price
+        int searchID;
+        double newPrice;
+        cout << "Enter Product ID to update price: ";
+        cin >> searchID;
+        bool found = false;
+    
+        for (int i = 0; i < 5; i++) {
+            if (products[i].getProductID() == searchID) {
+                cout << "Enter new price: ";
+                cin >> newPrice;
+                products[i].updatePrice(newPrice);
+                found = true;
+                break;
+            }
+        }
+    
+        if (!found) {
+            cout << "Product not exist." << endl;
+        } else {
+            // Display updated records
+            cout << "\nUpdated Product Details:" << endl;
+            for (int i = 0; i < 5; i++) {
+                products[i].display();
+            }
+        }
+    
+        return 0;
+    };
+    
