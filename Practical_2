@@ -1,0 +1,59 @@
+// To add the details of the students using parameterized constructor of student class.
+#include <iostream>
+using namespace std;
+
+class Student {
+private:
+    string name;
+    int rollNo;
+    float marks;
+
+public:
+    // Default Constructor
+    Student() : name(""), rollNo(0), marks(0.0f) {}
+
+    // Parameterized Constructor
+    Student(const string& n, int r, float m) : name(n), rollNo(r), marks(m) {}
+
+    // Function to display student details
+    void display() const {
+        cout << "\n--- Student Details ---" << endl;
+        cout << "Name: " << name << "\nRoll No: " << rollNo << "\nMarks: " << marks << "\n-----------------------" << endl;
+    }
+};
+
+int main() {
+    Student students[5]; // Array to store up to 5 students
+    int n;
+    
+    cout << "Enter number of students (max 5): ";
+    cin >> n;
+    if (n > 5) {
+        cout << "Only 5 students can be added. Setting n to 5." << endl;
+        n = 5;
+    }
+    
+    for (int i = 0; i < n; i++) {
+        string name;
+        int roll;
+        float marks;
+        
+        cout << "\nEnter details for student " << i + 1 << " :" << endl;
+        cin.ignore();
+        cout << "Enter student name: ";
+        getline(cin, name);
+        cout << "Enter roll number: ";
+        cin >> roll;
+        cout << "Enter marks: ";
+        cin >> marks;
+        
+        students[i] = Student(name, roll, marks);
+    }
+    
+    cout << "\nDisplaying Student Details:";
+    for (int i = 0; i < n; i++) {
+        students[i].display();
+    }
+    
+    return 0;
+}
