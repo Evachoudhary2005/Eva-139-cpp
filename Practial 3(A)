@@ -1,0 +1,28 @@
+/*  To update the details of a student uisng a member function of student class.*/
+#include<iostream>
+using namespace std;
+class Student {
+    public : int StudentId ; float Marks;
+    Student (int StudentId1 , float Marks1){
+        StudentId = StudentId1;
+        Marks = Marks1;
+    }
+    void Display(){
+        cout<<"\n Student Id is"<<StudentId;
+        cout<<"\n Marks are "<<Marks;
+    }
+};
+void Update(Student &obj1){//Pass By Reference
+    cout<<"\nEnter information you want to update ";
+    cout<<"\n Enter new Student Id ";
+    cin>>obj1.StudentId;
+    cout<<"\n enter your updated Marks";
+    cin>>obj1.Marks;
+}
+int main(){
+    Student obj1(101,450);
+    obj1.Display();
+    Update(obj1);
+    obj1.Display();
+    return 0;
+}
