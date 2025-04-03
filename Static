@@ -1,0 +1,29 @@
+/* Static Object Vs Normal Object in Cpp */
+#include<iostream>
+using namespace std;
+class Program 
+{
+    public : 
+    Program () // class constructor
+    {
+        cout<<"\n constructor Invoked";
+    }
+    ~Program() // Class Destructor
+    {
+        cout<<"\n Destructor Invoked";
+    }
+    void Display() { // Member Function of class
+        cout<<"\n Member Function called";
+    }
+};
+void Fun1()  // Function with normal class object
+{
+    Program Obj;
+    obj.Display();
+}
+int main() {
+    Fun1(); // calling function with class object
+    cout<<"\n Recalling Fun1()";
+    Fun1();
+    return 0;
+}
