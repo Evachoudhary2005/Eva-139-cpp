@@ -1,0 +1,19 @@
+/*Example of constant function*/
+#include<iostream>
+using namespace std;
+class Program
+{
+    public : int a=5;
+    void Modify() const //Constant Function
+    {                   //constant function can read member variable value
+                        //but not modify it
+        cout<<"Value of a is "<<a;
+         a=4; //This will raise error                
+    }
+};
+int main() 
+{
+    Program obj;
+    obj.Modify();
+    return 0;
+}
