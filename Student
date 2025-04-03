@@ -1,0 +1,48 @@
+//Program Multi level inheritance (student Management system)
+#include<iostream>
+using namespace std;
+class MyApp{                //Parent class
+    public:void Welcome_Message()
+    {
+        cout<<"Welcome to student management app";
+    }
+};
+class login : public MyApp  //child class 
+                                //syntax class child class name sign of inheritence
+                                //public parent class
+{
+    private:int pass=123,pass1;
+    public:void Accept()
+    {
+        cout<<"\n Enter your password";
+        cin>>pass1;
+        if(pass==pass1){
+            cout<<"\n login successfull";
+        }
+            else{
+                cout<<"\n login failed";
+            }  
+        }
+    };
+    class studentinfo:public login{  //Grand child class
+        private:string name;
+        int Regno;
+        public:void info(){
+            cout<<"Enter your name and registration no.";
+            cin>>name>>Regno;
+        
+        }
+        public:void display(){
+            cout<<"Information entered by the student is:"<<"Name is "<<name<<"\n registration number is"<<Regno;
+        }
+    };
+
+int main(){
+    studentinfo obj; // Grand child class object
+    obj.Welcome_Message(); //calling parent class function with child class object
+    obj.Accept();
+    obj.info();
+    obj.display();
+    return 0;
+}
+              
