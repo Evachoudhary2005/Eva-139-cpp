@@ -1,0 +1,16 @@
+// Program to count number of users using static variable
+// static variable declared inside class
+#include<iostream>
+using namespace std;
+class CountUser{
+    public : static int count; //Static vriable inside class
+    CountUser(){
+        count++;
+    }
+};
+int CountUser::count=0;//Static variable initlized outside the class
+int main() {
+    CountUser user1,user2,user3,user4;
+    cout<<"\n Total users are "<<CountUser::count;
+    return 0;
+}
