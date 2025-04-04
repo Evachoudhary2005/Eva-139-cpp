@@ -1,0 +1,81 @@
+/*Multi Level Inheritance
+a. create a base class with name MyApp
+b. create a function Message() , display welcome message on screen
+c. create a function login() accept pin from user and validate pin against value 123 and return message 'yes' or 'no'
+d. create a derived class with name studentInfo
+e. create a function accept() store student information like Name , Registration number, marks but only when user Login succesfully
+f. create a function display() to display student information on screen
+g. create one more derived class with name Grade_calc , this will take inheritance from studentInfo class
+h. create a function cal() , this will accept marks from accept() function of studentInfo class and calculate percentage and grade as per following
+Percentage between 80 to 100 A
+Percentage between 70 to 80 B
+Percentage between 60 to 70 C
+otherwise Not Qualified */
+
+#include <iostream>
+#include <string>
+using namespace std;
+class MyApp {
+public:
+    void Message() {
+        cout << "Welcome to My Application!" << endl;
+    }
+    string Login() {
+        int pin;
+        cout << "Enter PIN: ";
+        cin >> pin;
+        return (pin == 123) ? "Yes" : "No";
+    }
+};
+class StudentInfo : public MyApp {
+private:
+    string name;
+    string regNumber;
+    protected:
+    float marks;
+public:
+    void Accept() {
+        if (Login() == "Yes") {
+            cout << "Login Successful!" << endl;
+            cout << "Enter Name: ";
+            cin >> name;
+            cout << "Enter Registration Number: ";
+            cin >> regNumber;
+            cout << "Enter Marks: ";
+            cin >> marks;
+        } else {
+            cout << "Login Failed!" << endl;
+        }
+    }
+    void Display() {
+        cout << "Student Name: " << name << endl;
+        cout << "Registration Number: " << regNumber << endl;
+        cout << "Marks: " << marks << endl;
+    }
+};
+class Grade_Calc : public StudentInfo {
+public:
+    void Cal() {
+        Accept();
+        float percentage = marks; // Assuming marks are out of 100 for simplicity
+        char grade;
+        if (percentage >= 80 && percentage <= 100) {
+            grade = 'A';
+        } else if (percentage >= 70) {
+            grade = 'B';
+        } else if (percentage >= 60) {
+            grade = 'C';
+        } else {
+            cout << "Not qualified" << endl;
+            return;
+        }
+        cout << "Percentage: " << percentage << "%, Grade: " << grade << endl;
+    }
+};
+int main() {
+    Grade_Calc gc;
+    gc.Message();
+    gc.Cal();
+    gc.Display();
+    return 0;
+}
