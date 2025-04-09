@@ -1,0 +1,117 @@
+/*  Example :-  Hierarchical Inheritance
+Write A Program to 
+a. Create a base class with name Admin, 
+b. define default attributes like username ="admin" and password = 123
+c. create function Login() , this function will first validate username and password and then display information of the user.
+d. Create function Guest_Login() , this function will allow user Login for limited time and display only limited information 
+like Welcome Message and Current login Location.
+e. Create a derived  class 1 with name DBA , 
+this class will extends Admin class attributes with login() function , 
+after successful login
+f. Create a function Accept() to store user information 
+g. Create a derived class 2 with name Guest, this class will access Guest_Login() function from Admin and then store
+Feedback message. */
+#include <iostream>
+#include <string>
+#include <ctime>
+using namespace std;
+
+// Base class Admin
+class Admin {
+protected:
+    string username = "admin";
+    int password = 123;
+
+public:
+    // Login function with validation
+    void Login() {
+        string inputUser;
+        int inputPass;
+        
+        cout << "Enter username: ";
+        cin >> inputUser;
+        cout << "Enter password: ";
+        cin >> inputPass;
+
+        if (inputUser == username && inputPass == password) {
+            cout << "\nLogin successful!" << endl;
+            cout << "Admin Information:" << endl;
+            cout << "Username: " << username << endl;
+            cout << "Password: " << password << endl;
+        } else {
+            cout << "Invalid credentials!" << endl;
+        }
+    }
+
+    // Guest login with limited access
+    void Guest_Login() {
+        time_t now = time(0);
+        cout << "\nGuest Login successful!" << endl;
+        cout << "Welcome Message: Welcome Guest User" << endl;
+        cout << "Current Login Time: " << ctime(&now);
+        cout << "Access Level: Limited" << endl;
+    }
+};
+
+// Derived class DBA
+class DBA : public Admin {
+public:
+    // Override Login for DBA
+    void Login() {
+        Admin::Login(); // Call base class login
+        cout << "DBA Privileges Activated" << endl;
+    }
+
+    // Accept function to store user info
+    void Accept() {
+        string name, email;
+        cout << "\nEnter DBA information:" << endl;
+        cout << "Name: ";
+        cin >> name;
+        cout << "Email: ";
+        cin >> email;
+        cout << "DBA information stored successfully!" << endl;
+    }
+};
+
+// Derived class Guest
+class Guest : public Admin {
+private:
+    string feedback;
+
+public:
+    // Store guest feedback
+    void StoreFeedback() {
+        cout << "\nEnter your feedback: ";
+        cin.ignore(); // Clear input buffer
+        getline(cin, feedback);
+        cout << "Thank you for your feedback!" << endl;
+    }
+
+    // Guest login sequence
+    void GuestAccess() {
+        Guest_Login(); // Use base class guest login
+        StoreFeedback();
+    }
+};
+
+int main() {
+    // Demonstrate Admin login
+    cout << "--- Admin Login ---" << endl;
+    Admin admin;
+    admin.Login();
+
+    // Demonstrate DBA login and info storage
+    cout << "\n--- DBA Login ---" << endl;
+    DBA dba;
+    dba.Login();
+    dba.Accept();
+
+    // Demonstrate Guest access
+    cout << "\n--- Guest Access ---" << endl;
+    Guest guest;
+    guest.GuestAccess();
+
+    return 0;
+}
+
