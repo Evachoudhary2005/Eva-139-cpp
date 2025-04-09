@@ -1,0 +1,59 @@
+/* Hybrid Inheritance,
+In hybrid inheritance, 2 or more than 2 different types of inheritance are combine together.
+In this type of inheritance we often face a problem of ambigious function where compiler confuse to select the path to access parent
+class function and raise error that function is ambigious in nature.
+To solve the problem of Ambiguity or ambigious function, we use scope resolution operator or Virtual Inheritance */
+#include<iostream>
+using namespace std;
+class Parent {
+    public : Parent (){
+        cout<<"\n Parent class Constructor";
+    }
+    public : ~Parent(){
+        cout<<"\n Parent class Destructor";
+    }
+    public : void Fun1(){
+        cout<<"\n Parent class Function";
+    }
+};
+class Child1 : public Parent{
+    public : Child1(){
+        cout<<"\n Child1 class Constructor";
+    }
+    public : ~Child1(){
+        cout<<"\n Child1 class Destructor";
+    }
+    public : void Fun2(){
+        cout<<"\n Chlid1 class Function";
+    }
+};
+class Child2 : public Parent{
+    public : Child2(){
+        cout<<"\n Child2 class Constructor";
+    }
+    public : ~Child2(){
+        cout<<"\n Child2 class Destructor";
+    }
+    public : void Fun3(){
+        cout<<"\n Child2 class Function";
+    }
+};
+class Child3 : public Child1,public Child2{
+    public : Child3(){
+        cout<<"\n Child3 class Constructor";
+    }
+    public : ~Child3(){
+        cout<<"\n Child3 class Destructor";
+    }
+    public : void Fun4(){
+        cout<<"\n Child3 class Function";
+    }
+};
+int main(){
+    Child3 obj;
+    obj.Child2::Fun1();//accesing parent class functiom using scope resolution operator to remove ambiguity in Fun1() or obj.Child1::Fun1();
+    obj.Fun2();
+    obj.Fun3();
+    obj.Fun4();
+    return 0;
+}
