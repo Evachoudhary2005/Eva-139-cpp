@@ -1,0 +1,32 @@
+/*Dynamic Memory Allocation 
+using new and delete new will allocate memory to object at runtime 
+Delete will ensure that after program execution ,the object memory will free*/
+
+#include<iostream>
+using namespace std;
+class Student{
+    public:int Rollno;string name;
+    public:void Accept(int No,string N){
+        Rollno=No;
+        name=N;
+    }
+    public:void Display(){
+        cout<<"\n Registration Number of student is"<<Rollno;
+        cout<<"\n Name of Student is"<<name;
+    }
+};
+    int main(){
+        Student *obj=new Student();//Allocate Memory at Runtime
+        obj->name="User1";//Accessing class member variables using arrow operator 
+        obj->Rollno=1;
+        obj->Display();//Accessing member function using arrow operator
+        //or
+        int R;string N;
+        cout<<"\n Enter name and registration number";
+        cin>>N>>R;
+        obj->Accept(R,N);//Passing value to accept function at runtime
+        obj->Display();
+        delete obj;
+        return 0;
+    }    
+
